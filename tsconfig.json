@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "jsx": "react-jsx",
+    "strict": true,
+    "skipLibCheck": true,
+
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["resources/js/*"]
+    },
+
+    // 🔥 TAMBAHAN PENTING
+    "types": ["vite/client"]
+  },
+
+  // 🔥 TAMBAHAN BIAR TS LEBIH AMAN
+  "include": [
+    "resources/js/**/*",
+    "resources/js/**/*.d.ts"
+  ]
+}
