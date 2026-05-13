@@ -1,0 +1,1 @@
+<?php /**PATH /Users/mac/Downloads/penjualan-iphone/resources/views/admin/components/alert-success.blade.php ENDPATH**/ ?>

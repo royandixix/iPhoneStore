@@ -27,6 +27,10 @@ class HandleInertiaRequests extends Middleware
                     ]
                     : null,
             ],
+
+            // 🔥 WAJIB TAMBAH INI
+            'cartCount' => 0,
+            'notifCount' => 0,
         ]);
     }
 }

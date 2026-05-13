@@ -43,7 +43,8 @@ export default function Navbar() {
     const currentSearch =
         typeof window !== "undefined" ? window.location.search : "";
 
-    const auth = page.props.auth;
+    // const auth = page.props.auth;
+    const auth = page.props.auth ?? { user: null };
     console.log("AUTH NAVBAR:", auth); // ✅ setelah dideklarasikan
     const cartCount = (page.props.cartCount as number) ?? 0;
     const notifCount = (page.props.notifCount as number) ?? 0;

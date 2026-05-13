@@ -11,7 +11,7 @@
                         <p class="mb-0">Update data produk</p>
                     </div>
                     <div>
-                        <a href="{{ route('admin.products.index') }}" class="btn btn-primary">Kembali ke Produk</a>
+                        <a href="{{ route('admin.products.handphone.index') }}" class="btn btn-primary">Kembali ke Produk</a>
                     </div>
                 </div>
             </div>
@@ -31,7 +31,8 @@
                                 </ul>
                             </div>
                         @endif
-                        <form action="{{ route('admin.products.update', $product->id) }}" method="POST"
+
+                        <form action="{{ route('admin.products.handphone.update', $product->id) }}" method="POST"
                             enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
@@ -42,10 +43,17 @@
                                     <input type="text" name="name" class="form-control"
                                         value="{{ old('name', $product->name) }}" required>
                                 </div>
+
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">Kategori</label>
-                                    <input type="text" name="category" class="form-control"
-                                        value="{{ old('category', $product->category) }}">
+                                    <select name="category" class="form-control">
+                                        <option value="handphone" {{ $product->category == 'handphone' ? 'selected' : '' }}>
+                                            Handphone
+                                        </option>
+                                        <option value="accessories" {{ $product->category == 'accessories' ? 'selected' : '' }}>
+                                            Accessories
+                                        </option>
+                                    </select>
                                 </div>
                             </div>
 
@@ -55,6 +63,7 @@
                                     <input type="text" id="price_formatted" class="form-control" required>
                                     <input type="hidden" name="price" id="price">
                                 </div>
+
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">Stok</label>
                                     <input type="number" name="stock" class="form-control"
@@ -65,7 +74,8 @@
                             <div class="mb-3">
                                 <label class="form-label">Label</label>
                                 <input type="text" name="label" class="form-control"
-                                    placeholder="contoh: iPhone 15 Pro" value="{{ old('label', $product->label) }}">
+                                    placeholder="contoh: iPhone 15 Pro"
+                                    value="{{ old('label', $product->label) }}">
                             </div>
 
                             <div class="mb-3">
@@ -78,6 +88,7 @@
                             <div class="mb-3">
                                 <label class="form-label">Ganti Gambar</label>
                                 <input type="file" name="image" id="image" class="form-control">
+
                                 <div class="mt-3">
                                     <img id="preview-image" src="" alt="Preview"
                                         style="max-width:200px;display:none;border-radius:10px;">
@@ -91,7 +102,7 @@
 
                             <div class="d-flex gap-2">
                                 <button type="submit" class="btn btn-primary">Update</button>
-                                <a href="{{ route('admin.products.index') }}" class="btn btn-secondary">Batal</a>
+                                <a href="{{ route('admin.products.handphone.index') }}" class="btn btn-secondary">Batal</a>
                             </div>
 
                         </form>
@@ -104,39 +115,46 @@
 @endsection
 
 @push('scripts')
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const priceInput = document.getElementById('price_formatted');
-            const priceHidden = document.getElementById('price');
+<script>
+document.addEventListener('DOMContentLoaded', function () {
 
-            function formatRupiah(value) {
-                let number = String(value).replace(/\D/g, '');
-                if (number === '') number = '0';
-                return 'Rp ' + new Intl.NumberFormat('id-ID').format(number);
-            }
+    const priceInput = document.getElementById('price_formatted');
+    const priceHidden = document.getElementById('price');
 
-            // ✅ Set dari nilai PHP langsung (angka bersih dari database)
-            priceHidden.value = '{{ (int) old('price', $product->price) }}';
-            priceInput.value = formatRupiah(priceHidden.value);
+    function formatRupiah(value) {
+        let number = String(value || '').replace(/\D/g, '');
+        if (number === '') number = '0';
+        return 'Rp ' + new Intl.NumberFormat('id-ID').format(number);
+    }
 
-            priceInput.addEventListener('input', function(e) {
-                e.target.value = formatRupiah(e.target.value);
-                priceHidden.value = e.target.value.replace(/\D/g, '');
-            });
+    // 🔥 FIX: isi value awal aman
+    const initialPrice = '{{ $product->price }}';
+    priceHidden.value = initialPrice;
+    priceInput.value = formatRupiah(initialPrice);
 
-            const inputImage = document.getElementById('image');
-            const preview = document.getElementById('preview-image');
-            inputImage.addEventListener('change', function() {
-                const file = this.files[0];
-                if (file) {
-                    const reader = new FileReader();
-                    reader.onload = function(e) {
-                        preview.setAttribute('src', e.target.result);
-                        preview.style.display = 'block';
-                    }
-                    reader.readAsDataURL(file);
+    priceInput.addEventListener('input', function (e) {
+        const raw = e.target.value.replace(/\D/g, '');
+        priceHidden.value = raw;
+        e.target.value = formatRupiah(raw);
+    });
+
+    const inputImage = document.getElementById('image');
+    const preview = document.getElementById('preview-image');
+
+    if (inputImage) {
+        inputImage.addEventListener('change', function () {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    preview.setAttribute('src', e.target.result);
+                    preview.style.display = 'block';
                 }
-            });
+                reader.readAsDataURL(file);
+            }
         });
-    </script>
+    }
+
+});
+</script>
 @endpush

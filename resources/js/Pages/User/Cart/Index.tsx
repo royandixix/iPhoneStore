@@ -3,8 +3,12 @@ import { ShoppingCart } from "lucide-react";
 import { usePage, router } from "@inertiajs/react";
 
 export default function Index() {
-    // Mengambil data props dari Inertia
-    const { auth } = usePage().props as any;
+
+    // 🔥 FIX: aman kalau auth atau cart undefined
+    const props = usePage().props as any;
+    const auth = props?.auth ?? {};
+    const cart = props?.cart ?? {};
+
     const [domLoaded, setDomLoaded] = useState(false);
 
     useEffect(() => {
@@ -33,7 +37,7 @@ export default function Index() {
                 </h1>
 
                 <p className="text-[#707070] text-[15px] mb-12 max-w-[500px] mx-auto leading-relaxed">
-                    {auth?.user 
+                    {auth?.user
                         ? `Halo ${auth.user.name.split(' ')[0]}, temukan iPhone impian Anda di Mamuju. Jelajahi koleksi terbaru kami sekarang.`
                         : "Temukan iPhone impian Anda di Mamuju. Masuk ke akun Anda atau jelajahi koleksi terbaru kami sekarang."
                     }
@@ -66,36 +70,18 @@ export default function Index() {
                     </h2>
 
                     <div className="flex flex-wrap justify-center items-center gap-x-14 gap-y-10 mb-16 opacity-50 grayscale">
-                        <img
-                            src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg"
-                            alt="Visa"
-                            className="h-[14px]"
-                        />
-                        <img
-                            src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg"
-                            alt="Mastercard"
-                            className="h-[28px]"
-                        />
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" className="h-[14px]" />
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" className="h-[28px]" />
                         <span className="text-[22px] font-black text-[#000000] tracking-tighter italic">
                             gopay
                         </span>
-                        <img
-                            src="https://upload.wikimedia.org/wikipedia/commons/b/b5/Logo_Kredivo.svg"
-                            alt="Kredivo"
-                            className="h-[18px]"
-                        />
-                        <img
-                            src="https://upload.wikimedia.org/wikipedia/commons/f/fe/ShopeePay_logo.svg"
-                            alt="ShopeePay"
-                            className="h-[22px]"
-                        />
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/Logo_Kredivo.svg" className="h-[18px]" />
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/f/fe/ShopeePay_logo.svg" className="h-[22px]" />
                     </div>
 
                     <div className="max-w-[750px] mx-auto">
                         <p className="text-[10px] text-[#aaaaaa] font-medium leading-[2.2] tracking-widest uppercase">
-                            Layanan pengiriman khusus wilayah Mamuju, Sulawesi
-                            Barat. Pastikan Anda menyetujui syarat dan ketentuan
-                            sebelum melanjutkan transaksi.
+                            Layanan pengiriman khusus wilayah Mamuju, Sulawesi Barat. Pastikan Anda menyetujui syarat dan ketentuan sebelum melanjutkan transaksi.
                         </p>
                     </div>
                 </section>

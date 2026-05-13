@@ -8,7 +8,8 @@ interface AuthMenuProps {
 }
 
 export default function AuthMenu({ auth, isDark = true }: AuthMenuProps) {
-    const user = auth?.user;
+    // const user = auth?.user;
+    const user = auth?.user ?? null;
 
     // 🔥 USER SUDAH LOGIN
     if (user) {

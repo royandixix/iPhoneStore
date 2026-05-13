@@ -1,11 +1,12 @@
 import React from "react";
 import UserLayout from "@/layouts/UserLayout";
-import { Head, Link } from "@inertiajs/react";
+import { Head, Link, usePage } from "@inertiajs/react";
 import Sidebar from "./Components/Sidebar";
-// import Header from "./Components/Header";
 import ShopFooter from "./Components/ShopFooter";
 
 export default function Index({ products }: any) {
+    const page = usePage();
+    console.log("AUTH:", page.props.auth);
 
     const defaultProducts = [
         {
@@ -13,42 +14,42 @@ export default function Index({ products }: any) {
             name: "iPhone 13 Pro Max",
             price: 12500000,
             image: null,
-            description: "Layar Super Retina XDR 6,7 inci dengan ProMotion 120Hz, sistem kamera tiga lensa kelas profesional, dan chip A15 Bionic yang masih sangat relevan hingga hari ini."
+            description: "Layar Super Retina XDR 6,7 inci dengan ProMotion 120Hz, sistem kamera tiga lensa kelas profesional, dan chip A15 Bionic."
         },
         {
             id: 2,
             name: "iPhone 14 Pro",
             price: 15000000,
             image: null,
-            description: "Hadir dengan Dynamic Island yang ikonik, sensor kamera 48MP generasi pertama Apple, dan layar Always-On display yang selalu menampilkan informasi penting tanpa perlu menyalakan layar."
+            description: "Dynamic Island, kamera 48MP, dan Always-On display."
         },
         {
             id: 3,
             name: "iPhone 15 Pro",
             price: 18000000,
             image: null,
-            description: "Bodi titanium Grade 5 yang ringan namun kokoh, chip A17 Pro dengan performa GPU luar biasa, dan tombol Action yang bisa dikustomisasi sesuai kebutuhan Anda."
+            description: "Bodi titanium, chip A17 Pro, dan tombol Action."
         },
         {
             id: 4,
             name: "iPhone 12 Mini",
             price: 9500000,
             image: null,
-            description: "Satu-satunya iPhone modern dengan layar 5,4 inci yang nyaman digenggam satu tangan. Performa chip A14 Bionic-nya masih lebih dari cukup untuk kebutuhan sehari-hari."
+            description: "Ukuran compact dengan performa A14 Bionic."
         },
         {
             id: 5,
             name: "iPhone 11",
             price: 6500000,
             image: null,
-            description: "Titik masuk terbaik ke ekosistem Apple. Kamera ganda 12MP, chip A13 Bionic yang tahan lama, dan dukungan iOS terbaru menjadikannya pilihan cerdas dengan anggaran terjangkau."
+            description: "Pilihan terjangkau dengan kamera ganda 12MP."
         },
         {
             id: 6,
             name: "iPhone 13",
             price: 10500000,
             image: null,
-            description: "Keseimbangan sempurna antara harga dan fitur — baterai yang jauh lebih tahan lama dari generasi sebelumnya, kamera Cinematic Mode, dan chip A15 Bionic yang bertenaga."
+            description: "Baterai tahan lama dan Cinematic Mode."
         },
     ];
 
@@ -59,13 +60,11 @@ export default function Index({ products }: any) {
     };
 
     const displayProducts = products ?? defaultProducts;
-    
 
     return (
         <>
             <Head title="Daftar Produk iPhone" />
-            <Header />
-        console.log("AUTH:", page.props.auth);
+
             <div className="pb-20">
                 <div className="mx-auto max-w-[1400px] px-6">
                     <div className="flex flex-col lg:flex-row gap-10">
