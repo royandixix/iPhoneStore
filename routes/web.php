@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\StatsController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\PenjualanController;
+use App\Http\Controllers\Admin\CategoryController;
 
 Route::prefix('admin')->name('admin.')->group(function () {
 
@@ -71,7 +72,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
                 Route::put('/{product}', [ProductController::class, 'update'])->name('update');
                 Route::delete('/{product}', [ProductController::class, 'destroy'])->name('destroy');
             });
-
         });
 
         // ✅ FIX: PENJUALAN DIPINDAH KE LUAR PRODUCTS
@@ -79,6 +79,15 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::get('/', [PenjualanController::class, 'index'])->name('index');
         });
 
+        Route::prefix('categories')->name('categories.')->group(function () {
+            Route::get('/', [CategoryController::class, 'index'])->name('index');
+            Route::get('/create', [CategoryController::class, 'create'])->name('create');
+            Route::post('/', [CategoryController::class, 'store'])->name('store');
+            Route::get('/{category}/edit', [CategoryController::class, 'edit'])->name('edit');
+            Route::put('/{category}', [CategoryController::class, 'update'])->name('update');
+            Route::delete('/{category}', [CategoryController::class, 'destroy'])->name('destroy');
+            Route::get('/{category}', [CategoryController::class, 'show'])->name('show');
+        });
         Route::prefix('orders')->name('orders.')->group(function () {
             Route::get('/', [OrderController::class, 'index'])->name('index');
             Route::get('/{id}', [OrderController::class, 'show'])->name('show');
@@ -100,9 +109,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::post('/notifications', [SettingController::class, 'updateNotifications'])->name('notifications.update');
             Route::post('/appearance', [SettingController::class, 'updateAppearance'])->name('appearance.update');
         });
-
     });
-
 });
 
 Route::get('/', [HomeController::class, 'index'])->name('home');

@@ -109,9 +109,12 @@
         </li>
 
         <li>
-            <a class="nav-link" href="#">
+            <a class="nav-link <?php echo e(request()->routeIs('admin.categories.*') ? 'active' : ''); ?>"
+                href="<?php echo e(route('admin.categories.index')); ?>">
+
                 <i class="ti ti-category"></i>
                 Categories
+
             </a>
         </li>
 

@@ -109,9 +109,12 @@
         </li>
 
         <li>
-            <a class="nav-link" href="#">
+            <a class="nav-link {{ request()->routeIs('admin.categories.*') ? 'active' : '' }}"
+                href="{{ route('admin.categories.index') }}">
+
                 <i class="ti ti-category"></i>
                 Categories
+
             </a>
         </li>
 
