@@ -141,7 +141,6 @@
 
 </div>
 
-{{-- ================= MODAL DIPINDAH KE SINI ================= --}}
 @foreach ($products as $product)
 <div class="modal fade" id="productModal{{ $product->id }}" tabindex="-1">
     <div class="modal-dialog modal-lg modal-dialog-centered">

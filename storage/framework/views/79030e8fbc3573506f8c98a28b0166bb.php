@@ -143,7 +143,6 @@
 
 </div>
 
-
 <?php $__currentLoopData = $products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 <div class="modal fade" id="productModal<?php echo e($product->id); ?>" tabindex="-1">
     <div class="modal-dialog modal-lg modal-dialog-centered">

@@ -1,0 +1,6 @@
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h2 class="mb-1">Data Penjualan</h2>
+        <p class="text-muted mb-0">Ringkasan semua transaksi penjualan</p>
+    </div>
+</div><?php /**PATH /Users/mac/Downloads/penjualan-iphone/resources/views/admin/penjualan/components/header.blade.php ENDPATH**/ ?>

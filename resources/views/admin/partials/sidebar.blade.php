@@ -19,7 +19,7 @@
 
         <li>
             <a class="nav-link {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}"
-               href="{{ route('admin.dashboard') }}">
+                href="{{ route('admin.dashboard') }}">
                 <i class="ti ti-home"></i>
                 <span>Dashboard</span>
             </a>
@@ -33,9 +33,8 @@
         <!-- PRODUCTS -->
         <li class="nav-item">
 
-            <a class="nav-link d-flex justify-content-between align-items-center"
-               data-bs-toggle="collapse"
-               data-bs-target="#productsMenu">
+            <a class="nav-link d-flex justify-content-between align-items-center" data-bs-toggle="collapse"
+                data-bs-target="#productsMenu">
 
                 <span class="d-flex align-items-center gap-2">
                     <i class="ti ti-box-seam"></i>
@@ -45,14 +44,13 @@
                 <i class="ti ti-chevron-down rotate-icon"></i>
             </a>
 
-            <div class="collapse {{ request()->routeIs('admin.products.*') ? 'show' : '' }}"
-                 id="productsMenu">
+            <div class="collapse {{ request()->routeIs('admin.products.*') ? 'show' : '' }}" id="productsMenu">
 
                 <ul class="nav flex-column ms-4">
 
                     <li>
                         <a class="nav-link {{ request()->routeIs('admin.products.handphone.*') ? 'active' : '' }}"
-                           href="{{ route('admin.products.handphone.index') }}">
+                            href="{{ route('admin.products.handphone.index') }}">
                             <i class="ti ti-device-mobile"></i>
                             Handphone
                         </a>
@@ -60,7 +58,7 @@
 
                     <li>
                         <a class="nav-link {{ request()->routeIs('admin.products.accessories.*') ? 'active' : '' }}"
-                           href="{{ route('admin.products.accessories.index') }}">
+                            href="{{ route('admin.products.accessories.index') }}">
                             <i class="ti ti-headphones"></i>
                             Accessories
                         </a>
@@ -71,17 +69,16 @@
         </li>
 
         <!-- ORDERS -->
-        <li>
-            <a class="nav-link" href="#">
-                <i class="ti ti-shopping-cart"></i>
-                Orders
-            </a>
-        </li>
+        <a class="nav-link {{ request()->routeIs('admin.orders.*') ? 'active' : '' }}"
+            href="{{ route('admin.orders.index') }}">
+            <i class="ti ti-shopping-cart"></i>
+            Orders
+        </a>
 
         <!-- CUSTOMERS -->
         <li>
             <a class="nav-link {{ request()->routeIs('admin.customers.*') ? 'active' : '' }}"
-               href="{{ route('admin.customers.index') }}">
+                href="{{ route('admin.customers.index') }}">
                 <i class="ti ti-users"></i>
                 Customers
             </a>
@@ -94,18 +91,17 @@
 
         <li>
             <a class="nav-link {{ request()->routeIs('admin.laporan.*') ? 'active' : '' }}"
-               href="{{ route('admin.laporan.produk.review') }}">
+                href="{{ route('admin.laporan.produk.review') }}">
                 <i class="ti ti-file-text"></i>
                 Laporan
             </a>
         </li>
 
-        <li>
-            <a class="nav-link" href="#">
-                <i class="ti ti-report-money"></i>
-                Penjualan
-            </a>
-        </li>
+        <a class="nav-link {{ request()->routeIs('admin.penjualan.*') ? 'active' : '' }}"
+            href="{{ route('admin.penjualan.index') }}">
+            <i class="ti ti-report-money"></i>
+            Penjualan
+        </a>
 
         <!-- ================= SYSTEM ================= -->
         <li class="px-4 py-2 mt-3">
@@ -121,7 +117,7 @@
 
         <li>
             <a class="nav-link {{ request()->routeIs('admin.settings.*') ? 'active' : '' }}"
-               href="{{ route('admin.settings.index') }}">
+                href="{{ route('admin.settings.index') }}">
                 <i class="ti ti-settings"></i>
                 Settings
             </a>
@@ -133,9 +129,8 @@
         </li>
 
         <li>
-            <a class="nav-link text-danger"
-               href="#"
-               onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+            <a class="nav-link text-danger" href="#"
+                onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                 <i class="ti ti-logout"></i>
                 Logout
             </a>
@@ -148,39 +143,40 @@
     </ul>
 </aside>
 <style>
-/* ICON ROTATION */
-.rotate-icon {
-    transition: transform 0.3s ease;
-}
-
-.nav-link[aria-expanded="true"] .rotate-icon {
-    transform: rotate(180deg);
-}
-
-/* ACTIVE MENU */
-.nav-link.active {
-    background: rgba(13, 110, 253, 0.08);
-    border-radius: 8px;
-}
-
-/* SMOOTH COLLAPSE ANIMATION */
-.collapse.show {
-    animation: fadeSlide 0.25s ease;
-}
-
-@keyframes fadeSlide {
-    from {
-        opacity: 0;
-        transform: translateY(-6px);
+    /* ICON ROTATION */
+    .rotate-icon {
+        transition: transform 0.3s ease;
     }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
 
-/* ICON SPACING */
-.nav-link i {
-    margin-right: 6px;
-}
+    .nav-link[aria-expanded="true"] .rotate-icon {
+        transform: rotate(180deg);
+    }
+
+    /* ACTIVE MENU */
+    .nav-link.active {
+        background: rgba(13, 110, 253, 0.08);
+        border-radius: 8px;
+    }
+
+    /* SMOOTH COLLAPSE ANIMATION */
+    .collapse.show {
+        animation: fadeSlide 0.25s ease;
+    }
+
+    @keyframes fadeSlide {
+        from {
+            opacity: 0;
+            transform: translateY(-6px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* ICON SPACING */
+    .nav-link i {
+        margin-right: 6px;
+    }
 </style>
